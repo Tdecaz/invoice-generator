@@ -2,53 +2,71 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Invoice Generator</title>
+  <title>INVOICE INVOICE</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
-
 <div class="container">
-  <h2>Invoice Generator with Itemized Billing</h2>
-
+  <h1>INVOICE INVOICE</h1>
   <form id="invoice-form">
-    <label>Your Name/Company:</label>
-    <input type="text" id="your-name" required />
-
-    <label>Client Name:</label>
-    <input type="text" id="client-name" required />
-
+    <fieldset>
+      <legend>Invoice Details</legend>
+      <input type="text" placeholder="Series" id="series" required />
+      <input type="text" placeholder="No." id="number" required />
+      <input type="date" id="date" required />
+    </fieldset>
+    <fieldset>
+      <legend>Vendor</legend>
+      <input type="text" placeholder="Vendor" id="vendor" required />
+      <input type="text" placeholder="Vendor Code" id="vendor-code" required />
+      <input type="text" placeholder="Address" id="vendor-address" required />
+      <input type="text" placeholder="Billing Account" id="vendor-billing" required />
+      <input type="text" placeholder="Vendor VAT ID" id="vendor-vat" required />
+    </fieldset>
+    <fieldset>
+      <legend>Buyer</legend>
+      <input type="text" placeholder="Buyer" id="buyer" required />
+      <input type="text" placeholder="Buyer Code" id="buyer-code" required />
+      <input type="text" placeholder="Buyer Address" id="buyer-address" required />
+      <input type="text" placeholder="Billing Account" id="buyer-billing" required />
+      <input type="text" placeholder="Buyer VAT ID" id="buyer-vat" required />
+    </fieldset>
     <div id="items">
       <div class="item-row">
-        <input type="text" placeholder="Item Description" class="desc" required />
+        <input type="text" placeholder="Serial No." class="serial" required />
+        <input type="text" placeholder="Name of the service/good" class="name" required />
+        <input type="text" placeholder="Unit" class="unit" required />
         <input type="number" placeholder="Qty" class="qty" required />
-        <input type="number" placeholder="Rate" class="rate" required />
+        <input type="number" placeholder="Price EUR" class="price" required />
+        <input type="number" placeholder="Amount EUR" class="amount" readonly />
       </div>
     </div>
-
     <button type="button" id="add-item">+ Add Item</button>
     <button type="submit">Generate Invoice</button>
   </form>
-
   <button id="download-pdf">Download PDF</button>
+  <div id="invoice-preview">
+    <h2>INVOICE INVOICE</h2>
+    <p><strong>Series:</strong> <span id="p-series"></span> | <strong>No.:</strong> <span id="p-number"></span> | <strong>Date:</strong> <span id="p-date"></span></p>
+    <h3>Vendor</h3>
+    <p><span id="p-vendor"></span>, Code: <span id="p-vendor-code"></span>, VAT ID: <span id="p-vendor-vat"></span></p>
+    <p>Address: <span id="p-vendor-address"></span> | Billing: <span id="p-vendor-billing"></span></p>
+    <h3>Buyer</h3>
+    <p><span id="p-buyer"></span>, Code: <span id="p-buyer-code"></span>, VAT ID: <span id="p-buyer-vat"></span></p>
+    <p>Address: <span id="p-buyer-address"></span> | Billing: <span id="p-buyer-billing"></span></p>
+    <table>
+      <thead>
+        <tr><th>Serial</th><th>Name</th><th>Unit</th><th>Qty</th><th>Price EUR</th><th>Amount EUR</th></tr>
+      </thead>
+      <tbody id="invoice-items"></tbody>
+    </table>
+    <p><strong>Total Amount EUR:</strong> €<span id="total-amount">0.00</span></p>
+    <p><strong>Amount in words:</strong> <span id="amount-words"></span></p>
+    <p><strong>Vendor:</strong> _____________________</p>
+    <p><strong>Buyer:</strong> _____________________</p>
+  </div>
 </div>
-
-<!-- INVOICE PREVIEW SECTION -->
-<div id="invoice-preview">
-  <h3>Invoice</h3>
-  <p><strong>From:</strong> <span id="prev-your-name"></span></p>
-  <p><strong>To:</strong> <span id="prev-client-name"></span></p>
-
-  <table>
-    <thead>
-      <tr><th>Description</th><th>Qty</th><th>Rate</th><th>Subtotal</th></tr>
-    </thead>
-    <tbody id="invoice-items"></tbody>
-  </table>
-
-  <p><strong>Total: $<span id="total-amount">0.00</span></strong></p>
-</div>
-
 <script src="script.js"></script>
 </body>
 </html>
