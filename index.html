@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Invoice Generator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Invoice Generator with Itemized Billing</h2>
+
+  <form id="invoice-form">
+    <label>Your Name/Company:</label>
+    <input type="text" id="your-name" required />
+
+    <label>Client Name:</label>
+    <input type="text" id="client-name" required />
+
+    <div id="items">
+      <div class="item-row">
+        <input type="text" placeholder="Item Description" class="desc" required />
+        <input type="number" placeholder="Qty" class="qty" required />
+        <input type="number" placeholder="Rate" class="rate" required />
+      </div>
+    </div>
+
+    <button type="button" id="add-item">+ Add Item</button>
+    <button type="submit">Generate Invoice</button>
+  </form>
+
+  <button id="download-pdf">Download PDF</button>
+</div>
+
+<!-- INVOICE PREVIEW SECTION -->
+<div id="invoice-preview">
+  <h3>Invoice</h3>
+  <p><strong>From:</strong> <span id="prev-your-name"></span></p>
+  <p><strong>To:</strong> <span id="prev-client-name"></span></p>
+
+  <table>
+    <thead>
+      <tr><th>Description</th><th>Qty</th><th>Rate</th><th>Subtotal</th></tr>
+    </thead>
+    <tbody id="invoice-items"></tbody>
+  </table>
+
+  <p><strong>Total: $<span id="total-amount">0.00</span></strong></p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
