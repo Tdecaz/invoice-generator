@@ -2,71 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>INVOICE INVOICE</title>
+  <title>Invoice</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
-<div class="container">
-  <h1>INVOICE INVOICE</h1>
-  <form id="invoice-form">
-    <fieldset>
-      <legend>Invoice Details</legend>
-      <input type="text" placeholder="Series" id="series" required />
-      <input type="text" placeholder="No." id="number" required />
-      <input type="date" id="date" required />
-    </fieldset>
-    <fieldset>
-      <legend>Vendor</legend>
-      <input type="text" placeholder="Vendor" id="vendor" required />
-      <input type="text" placeholder="Vendor Code" id="vendor-code" required />
-      <input type="text" placeholder="Address" id="vendor-address" required />
-      <input type="text" placeholder="Billing Account" id="vendor-billing" required />
-      <input type="text" placeholder="Vendor VAT ID" id="vendor-vat" required />
-    </fieldset>
-    <fieldset>
-      <legend>Buyer</legend>
-      <input type="text" placeholder="Buyer" id="buyer" required />
-      <input type="text" placeholder="Buyer Code" id="buyer-code" required />
-      <input type="text" placeholder="Buyer Address" id="buyer-address" required />
-      <input type="text" placeholder="Billing Account" id="buyer-billing" required />
-      <input type="text" placeholder="Buyer VAT ID" id="buyer-vat" required />
-    </fieldset>
-    <div id="items">
-      <div class="item-row">
-        <input type="text" placeholder="Serial No." class="serial" required />
-        <input type="text" placeholder="Name of the service/good" class="name" required />
-        <input type="text" placeholder="Unit" class="unit" required />
-        <input type="number" placeholder="Qty" class="qty" required />
-        <input type="number" placeholder="Price EUR" class="price" required />
-        <input type="number" placeholder="Amount EUR" class="amount" readonly />
+  <div class="invoice" id="invoice">
+    <h1>INVOICE</h1>
+    <div class="section">
+      <div>
+        <h3>Vendor</h3>
+        <p>Name: Acme Corp</p>
+        <p>Code: 123456789</p>
+        <p>Address: 123 Main St, City</p>
+        <p>Billing Account: LT1234567890</p>
+        <p>VAT ID: LT987654321</p>
+      </div>
+      <div>
+        <h3>Buyer</h3>
+        <p>Name: Client Name</p>
+        <p>Code: 987654321</p>
+        <p>Address: 456 Other St, City</p>
+        <p>Billing Account: LT0987654321</p>
+        <p>VAT ID: LT123456789</p>
       </div>
     </div>
-    <button type="button" id="add-item">+ Add Item</button>
-    <button type="submit">Generate Invoice</button>
-  </form>
-  <button id="download-pdf">Download PDF</button>
-  <div id="invoice-preview">
-    <h2>INVOICE INVOICE</h2>
-    <p><strong>Series:</strong> <span id="p-series"></span> | <strong>No.:</strong> <span id="p-number"></span> | <strong>Date:</strong> <span id="p-date"></span></p>
-    <h3>Vendor</h3>
-    <p><span id="p-vendor"></span>, Code: <span id="p-vendor-code"></span>, VAT ID: <span id="p-vendor-vat"></span></p>
-    <p>Address: <span id="p-vendor-address"></span> | Billing: <span id="p-vendor-billing"></span></p>
-    <h3>Buyer</h3>
-    <p><span id="p-buyer"></span>, Code: <span id="p-buyer-code"></span>, VAT ID: <span id="p-buyer-vat"></span></p>
-    <p>Address: <span id="p-buyer-address"></span> | Billing: <span id="p-buyer-billing"></span></p>
+
     <table>
       <thead>
-        <tr><th>Serial</th><th>Name</th><th>Unit</th><th>Qty</th><th>Price EUR</th><th>Amount EUR</th></tr>
+        <tr>
+          <th>Serial</th><th>Description</th><th>Unit</th><th>Qty</th><th>Price EUR</th><th>Total EUR</th>
+        </tr>
       </thead>
-      <tbody id="invoice-items"></tbody>
+      <tbody>
+        <tr><td>1</td><td>Consulting Service</td><td>Hour</td><td>10</td><td>50.00</td><td>500.00</td></tr>
+        <tr><td>2</td><td>Hosting Fee</td><td>Month</td><td>2</td><td>25.00</td><td>50.00</td></tr>
+      </tbody>
     </table>
-    <p><strong>Total Amount EUR:</strong> €<span id="total-amount">0.00</span></p>
-    <p><strong>Amount in words:</strong> <span id="amount-words"></span></p>
-    <p><strong>Vendor:</strong> _____________________</p>
-    <p><strong>Buyer:</strong> _____________________</p>
+
+    <p class="total"><strong>Total Amount EUR:</strong> €550.00</p>
+    <p><strong>Amount in words:</strong> five hundred fifty euros</p>
+
+    <div class="footer">
+      <p><strong>Vendor Signature:</strong> __________________</p>
+      <p><strong>Buyer Signature:</strong> __________________</p>
+    </div>
   </div>
-</div>
-<script src="script.js"></script>
+
+  <div class="buttons">
+    <button onclick="downloadPDF()">Download PDF</button>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
